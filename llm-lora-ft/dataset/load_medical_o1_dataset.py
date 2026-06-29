@@ -1,14 +1,10 @@
 import torch
-from datasets import load_dataset
 
 
-
-def get_medical_resoning_sft(DATASET_NAME: str, tokenizer):
-
-    ds = load_dataset(DATASET_NAME, "en")
+def get_medical_resoning_sft(dataset, tokenizer):
 
     # shuffle and split the dataset
-    ds = ds["train"].shuffle(seed=42)
+    ds = dataset["train"].shuffle(seed=42)
     split = ds.train_test_split(test_size=0.1)
 
     train_ds = split["train"]
