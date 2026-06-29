@@ -1,0 +1,23 @@
+# ===== SFT Training Config =====
+sft:
+  output_dir: ./lora_out
+  per_device_train_batch_size: 2  # training examples per GPUper step
+  gradient_accumulation_steps: 4  # accumulate grads over N steps before an optimizer update
+  num_train_epochs: 10 # small dataset so more epochs
+  learning_rate: 2e-4  # higher LR for LoRA fine-tuning
+  logging_steps: 5  # how often to print loss
+  save_strategy: "no"  
+  bf16: true   # mixed precision training
+  report_to: []
+
+# ===== LoRA Config =====
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+  task_type: CAUSAL_LM
