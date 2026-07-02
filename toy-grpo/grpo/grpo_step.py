@@ -13,8 +13,8 @@ def step(model, optimizer, batch_size = 64, group_size = 8):
 
     true_answer = a + b
 
-    a_rep = a.repete_interleave(group_size) #shape: (B * group_size, )
-    b_rep = b.repete_interleave(group_size)
+    a_rep = a.repeat_interleave(group_size) #shape: (B * group_size, )
+    b_rep = b.repeat_interleave(group_size)
 
     true_rep = true_answer.repeat_interleave(group_size)  # shape: (B * group_size, )
 
